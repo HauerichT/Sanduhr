@@ -21,39 +21,47 @@ public class Sanduhr {
             end = 1;
         }
 
-        // berechnet und stellt die Sanduhr dar, solange die Symbole kleiner gleich der Startbreite sind
-        do {
-            // gibt die passende Anzahl der Leerzeichen aus
-            for (int i = 0; i < spacer; i++) {
-                System.out.print(" ");
-            }
+        // prüft, ob die Erstellung einer Sanduhr möglich ist (Startbreite muss >= 3 sein)
+        if (width <= 2) {
+            System.out.println("Bitte einen größeren Wert als 2 übergeben um eine Sanduhr zu erzeugen!");
+        }
+        else {
+            // berechnet und stellt die Sanduhr dar, solange die Symbole kleiner gleich der Startbreite sind
+            do {
 
-            // gibt die passende Anzahl der Symbole aus
-            for (int i = 0; i < symbols; i++) {
-                System.out.print("*");
-            }
+                // gibt die passende Anzahl der Leerzeichen aus
+                for (int i = 0; i < spacer; i++) {
+                    System.out.print(" ");
+                }
 
-            // zieht von der Symbolanzahl für die nächste Zeile 2 ab
-            symbols = symbols + symbolsOperand;
-            // fügt der Leerzeichenanzahl für die nächste Zeile 1 hinzu
-            spacer = spacer + spacerOperand;
+                // gibt die passende Anzahl der Symbole aus
+                for (int i = 0; i < symbols; i++) {
+                    System.out.print("*");
+                }
 
-            /*
-             * wenn die Endbedingung erreicht ist, werden die Operanden so angepasst,
-             * dass Leerzeichen abgezogen und Symbole hinzugefügt werden bis die Startbreite
-             * erreicht wird
-             */
-            if (symbols <= end) {
-                symbolsOperand = 2;
-                spacerOperand = -1;
-            }
+                // zieht von der Symbolanzahl für die nächste Zeile 2 ab
+                symbols = symbols + symbolsOperand;
+                // fügt der Leerzeichenanzahl für die nächste Zeile 1 hinzu
+                spacer = spacer + spacerOperand;
 
-            // sorgt für Zeilenumbruch nach jeder Zeile
-            System.out.println();
+                /*
+                 * wenn die Endbedingung erreicht ist, werden die Operanden so angepasst,
+                 * dass Leerzeichen abgezogen und Symbole hinzugefügt werden bis die Startbreite
+                 * erreicht wird
+                 */
+                if (symbols <= end) {
+                    symbolsOperand = 2;
+                    spacerOperand = -1;
+                }
 
-        // wird so lange ausgeführt, bis die Anzahl der Symbole größer als die Startbreite ist
-        } while (symbols <= width);
+                // sorgt für Zeilenumbruch nach jeder Zeile
+                System.out.println();
+
+                // wird so lange ausgeführt, bis die Anzahl der Symbole größer als die Startbreite ist
+            } while (symbols <= width);
+        }
     }
+
 
     public static void main(String[] args) {
         // ruft die Methode printSanduhr auf und übergibt die Startbreite
